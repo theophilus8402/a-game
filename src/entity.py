@@ -3,7 +3,7 @@ import util
 
 class Entity():
 
-    def __init__(self, race, gender, first_name, last_name, id=None):
+    def __init__(self, race, gender, first_name, last_name, loc, id=None):
         if id:
             self.id = id
         else:
@@ -12,9 +12,10 @@ class Entity():
         self.gender = gender
         self.first_name = first_name
         self.last_name = last_name
+        self.loc = loc
 
     def __repr__(self):
-        return f"<entity({self.first_name} {self.last_name})>"
+        return f"<entity({self.first_name} {self.last_name}, ({self.loc}))>"
 
 
 def generate_entity():
