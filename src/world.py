@@ -3,9 +3,10 @@ from status import Status
 
 class World():
 
-    def __init__(self, name):
+    def __init__(self, name, gmap):
         self.name = name
         self.entities = []
+        self.gmap = gmap
 
     def add_entity(self, entity):
         if not unique_name(entity, self):
@@ -13,6 +14,10 @@ class World():
 
         if not unique_id(entity, self):
             return Status.ID_EXISTS, f"Entity ID '{entity.id}' already exists in {self.name}."
+
+        status, msg = self.gmap.add_entity(entity)
+        if status != Status.SUCCESS:
+            return status, msg
 
         self.entities.append(entity)
         return Status.SUCCESS, ""

@@ -42,3 +42,9 @@ def generate_name(gender, race, last_name=None):
     first_name = name.split(" ")[0]
     last_name = name.split(" ")[1:]
     return first_name, " ".join(last_name)
+
+
+def generate_loc(gworld):
+    x = random.randint(gworld.gmap.min_x, gworld.gmap.max_x)
+    y = random.randint(gworld.gmap.min_y, gworld.gmap.max_y)
+    return (x, y)

@@ -18,13 +18,15 @@ class Entity():
         return f"<entity({self.first_name} {self.last_name}, ({self.loc}))>"
 
 
-def generate_entity():
+def generate_entity(world):
     gender = util.generate_gender()
     race = util.generate_race()
+    loc = util.generate_loc(world)
     first_name, last_name = util.generate_name(gender, race, last_name=None)
     return Entity(
         race=race,
         gender=gender,
         first_name=first_name,
         last_name=last_name,
+        loc=loc
     )

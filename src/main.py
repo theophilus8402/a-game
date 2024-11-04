@@ -1,7 +1,7 @@
 
 import entity
 import util
-import wmap
+import gmap
 import world
 
 from status import Status
@@ -9,7 +9,9 @@ from status import Status
 
 if __name__ == "__main__":
 
-    game_world = world.World("Disc World")
+    game_map = gmap.Gmap(10, 10, -10, -10)
+
+    game_world = world.World("Disc World", gmap=game_map)
     print(f"Hello, {game_world.name}!")
 
     bob = entity.Entity(
@@ -45,27 +47,25 @@ if __name__ == "__main__":
     first_name, last_name = util.generate_name("female", "elf", last_name=None)
     print(f"Hello, {first_name} {last_name}!")
 
-    #for i in range(10):
-    #    ent = entity.generate_entity()
-    #    status, msg = game_world.add_entity(ent)
-    #    if status != Status.SUCCESS:
-    #        print(f"ERROR: {msg}")
-    #        continue
-    #    print(f"{ent.first_name} {ent.last_name} ({ent.id}), {ent.gender}, {ent.race}")
+    for i in range(10):
+        ent = entity.generate_entity(game_world)
+        status, msg = game_world.add_entity(ent)
+        if status != Status.SUCCESS:
+            print(f"ERROR: {msg}")
+            continue
+        print(f"{ent.first_name} {ent.last_name} ({ent.id}), {ent.gender}, {ent.race}")
 
     print(game_world.entities)
 
-    world_map = wmap.Wmap(10, 10, -10, -10)
-
     print(f"Adding Bob to ({bob.loc})")
-    status, msg = world_map.add_entity(bob)
+    status, msg = game_map.add_entity(bob)
     if status != Status.SUCCESS:
         print(f"ERROR: {msg}")
     else:
         print(f"Added {bob.first_name} to ({bob.loc})!")
 
     print(f"Adding Tim to ({tim.loc})")
-    status, msg = world_map.add_entity(tim)
+    status, msg = game_map.add_entity(tim)
     if status != Status.SUCCESS:
         print(f"ERROR: {msg}")
     else:

@@ -12,3 +12,4 @@ class Status(enum.Enum):
 
     # 200 - 299 map related
     OUT_OF_BOUNDS = 200
+    CANT_FIT = 201

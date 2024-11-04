@@ -20,7 +20,7 @@ def in_bounds(entity, max_x, max_y, min_x, min_y):
     return Status.SUCCESS, ""
 
 
-class Wmap():
+class Gmap():
 
     def __init__(self, max_x, max_y, min_x, min_y):
         self.max_x = max_x
@@ -35,5 +35,15 @@ class Wmap():
         if status != Status.SUCCESS:
             return (status, msg)
 
+        status, msg = can_fit(entity, entity.loc, self)
+        if status != Status.SUCCESS:
+            return (status, msg)
+
         self.entities[entity.loc] = entity
         return Status.SUCCESS, ""
+
+
+def can_fit(entity, new_loc, game_map):
+    if game_map.entities.get(new_loc, None):
+        return Status.CANT_FIT, f"({new_loc}) already occupied by {game_map.entities[new_loc].first_name}!"
+    return Status.SUCCESS, ""
