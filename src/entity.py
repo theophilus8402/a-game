@@ -13,6 +13,7 @@ class Entity():
         self.first_name = first_name
         self.last_name = last_name
         self.loc = loc
+        self.symbol = "@"
 
     def __repr__(self):
         return f"<entity({self.first_name} {self.last_name}, ({self.loc}))>"

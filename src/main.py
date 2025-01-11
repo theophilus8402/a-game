@@ -2,6 +2,7 @@
 import entity
 import util
 import gmap
+import view
 import world
 
 from status import Status
@@ -64,9 +65,14 @@ if __name__ == "__main__":
     else:
         print(f"Added {bob.first_name} to ({bob.loc})!")
 
-    print(f"Adding Tim to ({tim.loc})")
+    new_loc = (22, 3)
+    print(f"Moving Tim to ({new_loc})")
+    tim.loc = new_loc
     status, msg = game_map.add_entity(tim)
+    print(f"Adding Tim to ({tim.loc})")
     if status != Status.SUCCESS:
         print(f"ERROR: {msg}")
     else:
         print(f"Added {tim.first_name} to ({tim.loc})!")
+
+    view.display_map(game_map, 5, 5, (-5, 5))

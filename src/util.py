@@ -8,9 +8,9 @@ def generate_id(id=None):
         return id
     return random.randint(1, 2000)
 
-
+genders = ["male", "female"]
 def generate_gender():
-    return random.choices(["male", "female"], weights=[.6, .4])[0]
+    return random.choices(genders, weights=[.6, .4])[0]
 
 
 race_distribution = {
@@ -40,8 +40,9 @@ def generate_name(gender, race, last_name=None):
             names = fantasynames.hobbit
     name = names(gender)
     first_name = name.split(" ")[0]
-    last_name = name.split(" ")[1:]
-    return first_name, " ".join(last_name)
+    if not last_name:
+        last_name = " ".join(name.split(" ")[1:])
+    return first_name, last_name
 
 
 def generate_loc(gworld):
